@@ -20,7 +20,9 @@ app.use(
         connectSrc: ["'self'", "https://accredian-backend-task-a4lm.onrender.com"],
         imgSrc: ["'self'", "data:"],
         objectSrc: ["'none'"],
-        upgradeInsecureRequests: [],
+        styleSrc: ["'self'", "'unsafe-inline'"],  // Allow inline styles (if needed)
+        frameAncestors: ["'self'"],  // Prevent clickjacking attacks
+        baseUri: ["'self'"],  // Restrict base tag usage
       },
     },
   })
