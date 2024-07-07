@@ -60,9 +60,18 @@ const sendReferralEmail = async (referrerEmail, refereeName) => {
     console.log(info)
 };
 
+const getRefferalUsers = async (req,res)=>{
+  try {
+    const users = await prisma.referral.findMany();
+    res.status(200).json(users)
+  } catch (error) {
+    console.error('Error creating referral:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 module.exports = {
   createReferralHandler,
+  getRefferalUsers
 };
 
-
-//host: "smtp.gmail.com",
