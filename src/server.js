@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const referralRoutes = require('./routes/referralRoutes');
-const prisma = require('./database');
 require('dotenv').config();
 
 const app = express();
@@ -11,15 +10,17 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
-// Use Helmet to set security-related HTTP headers, including CSP
+// Helmet configuration
 app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "'unsafe-inline'"],
-        styleSrc: ["'self'"],
-        // Add other directives as needed
+        connectSrc: ["'self'", "https://accredian-backend-task-a4lm.onrender.com"],
+        imgSrc: ["'self'", "data:"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
       },
     },
   })
